@@ -34,7 +34,8 @@
 ////////////////////////
 
 #define BUFFER_LENGTH    3     // 3 bytes gives us 24 samples
-#define NUM_INPUTS       18    // 6 on the front + 12 on the back
+// #define NUM_INPUTS       18    // 6 on the front + 12 on the back
+#define NUM_INPUTS       15    // 6 on the front + 12 on the back
 //#define TARGET_LOOP_TIME 694   // (1/60 seconds) / 24 samples = 694 microseconds per sample 
 //#define TARGET_LOOP_TIME 758  // (1/55 seconds) / 24 samples = 758 microseconds per sample 
 #define TARGET_LOOP_TIME 744  // (1/56 seconds) / 24 samples = 744 microseconds per sample 
@@ -83,13 +84,13 @@ int mouseHoldCount[NUM_INPUTS]; // used to store mouse movement hold data
 // Pin Numbers
 // input pin numbers for kickstarter production board
 int pinNumbers[NUM_INPUTS] = {
-  12, 8, 13, 15, 7, 6,     // top of makey makey board
+//  12, 8, 13, 15, 7, 6,     // top of makey makey board
+  8, 7, 6,     // top of makey makey board
   5, 4, 3, 2, 1, 0,        // left side of female header, KEBYBOARD
   23, 22, 21, 20, 19, 18   // right side of female header, MOUSE
 };
 
 // input status LED pin numbers
-const int inputLED_a = 9;
 const int inputLED_b = 10;
 const int inputLED_c = 11;
 const int outputK = 14;
@@ -160,10 +161,8 @@ void initializeArduino() {
     digitalWrite(pinNumbers[i], LOW);
   }
 
-  pinMode(inputLED_a, INPUT);
   pinMode(inputLED_b, INPUT);
   pinMode(inputLED_c, INPUT);
-  digitalWrite(inputLED_a, LOW);
   digitalWrite(inputLED_b, LOW);
   digitalWrite(inputLED_c, LOW);
 
@@ -519,10 +518,8 @@ void addDelay() {
 // CYCLE LEDS
 ///////////////////////////
 void cycleLEDs() {
-  pinMode(inputLED_a, INPUT);
   pinMode(inputLED_b, INPUT);
   pinMode(inputLED_c, INPUT);
-  digitalWrite(inputLED_a, LOW);
   digitalWrite(inputLED_b, LOW);
   digitalWrite(inputLED_c, LOW);
 
@@ -530,16 +527,12 @@ void cycleLEDs() {
   ledCycleCounter %= 6;
 
   if ((ledCycleCounter == 0) && inputs[0].pressed) {
-    pinMode(inputLED_a, INPUT);
-    digitalWrite(inputLED_a, LOW);
     pinMode(inputLED_b, OUTPUT);
     digitalWrite(inputLED_b, HIGH);
     pinMode(inputLED_c, OUTPUT);
     digitalWrite(inputLED_c, LOW);
   }
   if ((ledCycleCounter == 1) && inputs[1].pressed) {
-    pinMode(inputLED_a, OUTPUT);
-    digitalWrite(inputLED_a, HIGH);
     pinMode(inputLED_b, OUTPUT);
     digitalWrite(inputLED_b, LOW);
     pinMode(inputLED_c, INPUT);
@@ -547,32 +540,24 @@ void cycleLEDs() {
 
   }
   if ((ledCycleCounter == 2) && inputs[2].pressed) {
-    pinMode(inputLED_a, OUTPUT);
-    digitalWrite(inputLED_a, LOW);
     pinMode(inputLED_b, OUTPUT);
     digitalWrite(inputLED_b, HIGH);
     pinMode(inputLED_c, INPUT);
     digitalWrite(inputLED_c, LOW);
   }
   if ((ledCycleCounter == 3) && inputs[3].pressed) {
-    pinMode(inputLED_a, INPUT);
-    digitalWrite(inputLED_a, LOW);
     pinMode(inputLED_b, OUTPUT);
     digitalWrite(inputLED_b, LOW);
     pinMode(inputLED_c, OUTPUT);
     digitalWrite(inputLED_c, HIGH);
   }
   if ((ledCycleCounter == 4) && inputs[4].pressed) {
-    pinMode(inputLED_a, OUTPUT);
-    digitalWrite(inputLED_a, LOW);
     pinMode(inputLED_b, INPUT);
     digitalWrite(inputLED_b, LOW);
     pinMode(inputLED_c, OUTPUT);
     digitalWrite(inputLED_c, HIGH);
   }
   if ((ledCycleCounter == 5) && inputs[5].pressed) {
-    pinMode(inputLED_a, OUTPUT);
-    digitalWrite(inputLED_a, HIGH);
     pinMode(inputLED_b, INPUT);
     digitalWrite(inputLED_b, LOW);
     pinMode(inputLED_c, OUTPUT);
@@ -593,8 +578,6 @@ void danceLeds()
   for(int i=0; i<4; i++)
   {
     // UP
-    pinMode(inputLED_a, INPUT);
-    digitalWrite(inputLED_a, LOW);
     pinMode(inputLED_b, OUTPUT);
     digitalWrite(inputLED_b, HIGH);
     pinMode(inputLED_c, OUTPUT);
@@ -602,8 +585,6 @@ void danceLeds()
     delay(delayTime);
 
     //RIGHT
-    pinMode(inputLED_a, INPUT);
-    digitalWrite(inputLED_a, LOW);
     pinMode(inputLED_b, OUTPUT);
     digitalWrite(inputLED_b, LOW);
     pinMode(inputLED_c, OUTPUT);
@@ -612,8 +593,6 @@ void danceLeds()
 
 
     // DOWN
-    pinMode(inputLED_a, OUTPUT);
-    digitalWrite(inputLED_a, HIGH);
     pinMode(inputLED_b, OUTPUT);
     digitalWrite(inputLED_b, LOW);
     pinMode(inputLED_c, INPUT);
@@ -621,8 +600,6 @@ void danceLeds()
     delay(delayTime);
 
     // LEFT
-    pinMode(inputLED_a, OUTPUT);
-    digitalWrite(inputLED_a, LOW);
     pinMode(inputLED_b, OUTPUT);    
     digitalWrite(inputLED_b, HIGH);
     pinMode(inputLED_c, INPUT);
@@ -634,8 +611,6 @@ void danceLeds()
   for(int i=0; i<4; i++)
   {
     // SPACE
-    pinMode(inputLED_a, OUTPUT);
-    digitalWrite(inputLED_a, HIGH);
     pinMode(inputLED_b, INPUT);
     digitalWrite(inputLED_b, LOW);
     pinMode(inputLED_c, OUTPUT);
@@ -643,8 +618,6 @@ void danceLeds()
     delay(delayTime2);    
 
     // CLICK
-    pinMode(inputLED_a, OUTPUT);
-    digitalWrite(inputLED_a, LOW);
     pinMode(inputLED_b, INPUT);
     digitalWrite(inputLED_b, LOW);
     pinMode(inputLED_c, OUTPUT);

@@ -16,31 +16,33 @@
 
 int keyCodes[NUM_INPUTS] = {
   // top side of the makey makey board
- 
+/* 
   KEY_UP_ARROW,      // up arrow pad
   KEY_DOWN_ARROW,    // down arrow pad
   KEY_LEFT_ARROW,    // left arrow pad
-  KEY_RIGHT_ARROW,   // right arrow pad
-  ' ',               // space button pad
-  MOUSE_LEFT,        // click button pad
+  */
+  '9',               // pin D8
+  '7',               // pin D7
+  '6',               // pin D6
   
   // female header on the back left side
   
-  'w',                // pin D5
-  'a',                // pin D4
-  's',                // pin D3
-  'd',                // pin D2
-  'f',                // pin D1
-  'g',                // pin D0
+  '5',                // pin D5
+  '4',                // pin D4
+  '3',                // pin D3
+  '2',                // pin D2
+  '1',                // pin D1
+  '0',                // pin D0
   
   // female header on the back right side
-  
-  MOUSE_MOVE_UP,      // pin A5
-  MOUSE_MOVE_DOWN,    // pin A4
-  MOUSE_MOVE_LEFT,    // pin A3
-  MOUSE_MOVE_RIGHT,   // pin A2
-  MOUSE_LEFT,         // pin A1
-  MOUSE_RIGHT         // pin A0
+
+
+  'h',                // pin A5
+  'j',                // pin A4
+  'k',                // pin A3
+  'l',                // pin A2
+  ';',                // pin A1
+  'p'                 // pin A0
 };
 
 ///////////////////////////
@@ -51,7 +53,7 @@ int keyCodes[NUM_INPUTS] = {
                                            // recommended values are between 2 and 20
                                            // default value is 5
 
-#define SWITCH_THRESHOLD_CENTER_BIAS 55   // number between 1 and 99
+#define SWITCH_THRESHOLD_CENTER_BIAS 35   // number between 1 and 99
                                           // larger value makes it easier to "release" keys, but harder to "press"
                                           // smaller value makes it easier to "press" keys, but harder to "release"
                                           // recommended values are between 30 and 70
